@@ -25,7 +25,7 @@
 //using Loxodon.Log;
 using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
+
 using SnkFramework.FluentBinding.Base;
 
 namespace Loxodon.Framework.Binding.Proxy.Targets
@@ -33,7 +33,7 @@ namespace Loxodon.Framework.Binding.Proxy.Targets
     public class TargetProxyFactory : ITargetProxyFactory, ITargetProxyFactoryRegister
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(TargetProxyFactory));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         private List<PriorityFactoryPair> factories = new List<PriorityFactoryPair>();
 
         public ITargetProxy CreateProxy(object target, BindingDescription description)

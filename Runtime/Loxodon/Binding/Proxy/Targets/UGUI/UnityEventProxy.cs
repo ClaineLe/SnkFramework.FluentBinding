@@ -25,7 +25,7 @@
 using System;
 using System.Reflection;
 using System.Collections.Generic;
-using JetBrains.Annotations;
+
 using UnityEngine.Events;
 
 //using Loxodon.Log;
@@ -198,7 +198,7 @@ namespace Loxodon.Framework.Binding.Proxy.Targets
     public class UnityEventProxy : UnityEventProxyBase<UnityEvent>
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(UnityEventProxy));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         public UnityEventProxy(object target, UnityEvent unityEvent) : base(target, unityEvent)
         {
@@ -284,7 +284,7 @@ namespace Loxodon.Framework.Binding.Proxy.Targets
     public class UnityEventProxy<T> : UnityEventProxyBase<UnityEvent<T>>
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(UnityEventProxy<T>));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         public UnityEventProxy(object target, UnityEvent<T> unityEvent) : base(target, unityEvent)
         {
         }
@@ -371,7 +371,7 @@ namespace Loxodon.Framework.Binding.Proxy.Targets
     public class UnityEventProxy<T0, T1> : UnityEventProxyBase<UnityEvent<T0, T1>>
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(UnityEventProxy<T0, T1>));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         public UnityEventProxy(object target, UnityEvent<T0, T1> unityEvent) : base(target, unityEvent)
         {
@@ -461,7 +461,7 @@ namespace Loxodon.Framework.Binding.Proxy.Targets
     public class UnityEventProxy<T0, T1, T2> : UnityEventProxyBase<UnityEvent<T0, T1, T2>>
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(UnityEventProxy<T0, T1, T2>));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         public UnityEventProxy(object target, UnityEvent<T0, T1, T2> unityEvent) : base(target, unityEvent)
         {
@@ -554,7 +554,7 @@ namespace Loxodon.Framework.Binding.Proxy.Targets
     public class UnityEventProxy<T0, T1, T2, T3> : UnityEventProxyBase<UnityEvent<T0, T1, T2, T3>>
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(UnityEventProxy<T0, T1, T2, T3>));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         public UnityEventProxy(object target, UnityEvent<T0, T1, T2, T3> unityEvent) : base(target, unityEvent)
         {

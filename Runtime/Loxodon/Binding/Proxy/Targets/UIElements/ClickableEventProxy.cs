@@ -29,7 +29,7 @@ using Loxodon.Framework.Commands;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using JetBrains.Annotations;
+
 using SnkFramework.FluentBinding.Base;
 using UnityEngine.UIElements;
 
@@ -38,7 +38,7 @@ namespace Loxodon.Framework.Binding.Proxy.Targets
     public class ClickableEventProxy : EventTargetProxyBase
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(ClickableEventProxy));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private bool disposed = false;
         protected ICommand command;/* Command Binding */

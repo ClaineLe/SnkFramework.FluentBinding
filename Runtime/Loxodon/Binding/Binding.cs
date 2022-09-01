@@ -23,7 +23,7 @@
  */
 
 using System;
-using JetBrains.Annotations;
+
 //using Loxodon.Log;
 using Loxodon.Framework.Binding.Proxy;
 using Loxodon.Framework.Binding.Converters;
@@ -39,7 +39,7 @@ namespace Loxodon.Framework.Binding
     public class Binding : AbstractBinding
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(Binding));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private readonly ISourceProxyFactory sourceProxyFactory;
         private readonly ITargetProxyFactory targetProxyFactory;

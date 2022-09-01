@@ -28,7 +28,7 @@ using Loxodon.Framework.Interactivity;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using JetBrains.Annotations;
+
 using SnkFramework.FluentBinding.Base;
 
 namespace Loxodon.Framework.Binding.Proxy.Sources.Object
@@ -36,7 +36,7 @@ namespace Loxodon.Framework.Binding.Proxy.Sources.Object
     public class InteractionNodeProxy : SourceProxyBase, IModifiable
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(InteractionNodeProxy));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private readonly IInteractionRequest request;
 

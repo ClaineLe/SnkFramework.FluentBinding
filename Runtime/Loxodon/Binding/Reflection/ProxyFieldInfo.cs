@@ -28,7 +28,7 @@ using System.Reflection;
 //using Loxodon.Log;
 
 using System.Linq.Expressions;
-using JetBrains.Annotations;
+
 using SnkFramework.FluentBinding.Base;
 
 namespace Loxodon.Framework.Binding.Reflection
@@ -37,7 +37,7 @@ namespace Loxodon.Framework.Binding.Reflection
     public class ProxyFieldInfo : IProxyFieldInfo
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(ProxyFieldInfo));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private readonly bool isValueType;
         private TypeCode typeCode;
@@ -100,7 +100,7 @@ namespace Loxodon.Framework.Binding.Reflection
     public class ProxyFieldInfo<T, TValue> : ProxyFieldInfo, IProxyFieldInfo<T, TValue>
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(ProxyFieldInfo<T, TValue>));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private Func<T, TValue> getter;
         private Action<T, TValue> setter;

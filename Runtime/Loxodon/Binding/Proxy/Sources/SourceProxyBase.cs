@@ -24,7 +24,7 @@
 
 //using Loxodon.Log;
 using System;
-using JetBrains.Annotations;
+
 using SnkFramework.FluentBinding.Base;
 
 namespace Loxodon.Framework.Binding.Proxy.Sources
@@ -62,7 +62,7 @@ namespace Loxodon.Framework.Binding.Proxy.Sources
     public abstract class NotifiableSourceProxyBase : SourceProxyBase, INotifiable
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(NotifiableSourceProxyBase));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         protected readonly object _lock = new object();
         protected EventHandler valueChanged;
 

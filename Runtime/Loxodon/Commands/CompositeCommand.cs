@@ -25,7 +25,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
+
 using SnkFramework.FluentBinding.Base;
 
 //using Loxodon.Log;
@@ -38,7 +38,7 @@ namespace Loxodon.Framework.Commands
     public class CompositeCommand : CommandBase
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(CompositeCommand));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private readonly List<ICommand> commands = new List<ICommand>();
         private readonly bool monitorCommandActivity;

@@ -24,7 +24,7 @@
 
 using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
+
 
 //using Loxodon.Log;
 using Loxodon.Framework.Binding.Binders;
@@ -35,7 +35,7 @@ namespace Loxodon.Framework.Binding.Contexts
     public class BindingContext : IBindingContext
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(BindingContext));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private readonly string DEFAULT_KEY = "_KEY_";
         private readonly Dictionary<object, List<IBinding>> bindings = new Dictionary<object, List<IBinding>>();

@@ -25,7 +25,7 @@
 using Loxodon.Framework.Binding.Reflection;
 //using Loxodon.Log;
 using System;
-using JetBrains.Annotations;
+
 using SnkFramework.FluentBinding.Base;
 using INotifyPropertyChanged = System.ComponentModel.INotifyPropertyChanged;
 using PropertyChangedEventArgs = System.ComponentModel.PropertyChangedEventArgs;
@@ -35,7 +35,7 @@ namespace Loxodon.Framework.Binding.Proxy.Sources.Object
     public class PropertyNodeProxy : NotifiableSourceProxyBase, IObtainable, IModifiable, INotifiable
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(PropertyNodeProxy));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         protected IProxyPropertyInfo propertyInfo;
 
         public PropertyNodeProxy(IProxyPropertyInfo propertyInfo) : this(null, propertyInfo)

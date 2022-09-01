@@ -23,7 +23,7 @@
  */
 
 using System.Collections.Generic;
-using JetBrains.Annotations;
+
 using SnkFramework.FluentBinding.Base;
 
 //using Loxodon.Log;
@@ -34,7 +34,7 @@ namespace Loxodon.Framework.Binding.Registry
     public class KeyValueRegistry<K,V> : IKeyValueRegistry<K,V>
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(KeyValueRegistry<K, V>));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private readonly Dictionary<K, V> lookups = new Dictionary<K, V>();
 

@@ -24,7 +24,7 @@
 
 using System;
 using System.Reflection;
-using JetBrains.Annotations;
+
 using SnkFramework.FluentBinding.Base;
 
 //using Loxodon.Log;
@@ -34,7 +34,7 @@ namespace Loxodon.Framework.Binding.Reflection
     public class StaticProxyPropertyInfo<T, TValue> : ProxyPropertyInfo, IProxyPropertyInfo<T, TValue>
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(StaticProxyPropertyInfo<T, TValue>));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private Func<TValue> getter;
         private Action<TValue> setter;

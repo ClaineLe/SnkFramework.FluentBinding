@@ -26,7 +26,7 @@
 using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using JetBrains.Annotations;
+
 using SnkFramework.FluentBinding.Base;
 
 namespace Loxodon.Framework
@@ -34,7 +34,7 @@ namespace Loxodon.Framework
     public static class WeakDelegateExtensions
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(WeakDelegateExtensions));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         public static Action AsWeak(this Action action)
         {

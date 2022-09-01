@@ -31,7 +31,7 @@ using System.Diagnostics;
 //using Loxodon.Log;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
-using JetBrains.Annotations;
+
 using SnkFramework.FluentBinding.Base;
 using UnityEngine;
 
@@ -41,7 +41,7 @@ namespace Loxodon.Framework.Observables
     public abstract class ObservableObject : INotifyPropertyChanged
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(ObservableObject));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         private static readonly PropertyChangedEventArgs NULL_EVENT_ARGS = new PropertyChangedEventArgs(null);
         private static readonly Dictionary<string, PropertyChangedEventArgs> PROPERTY_EVENT_ARGS = new Dictionary<string, PropertyChangedEventArgs>();
 

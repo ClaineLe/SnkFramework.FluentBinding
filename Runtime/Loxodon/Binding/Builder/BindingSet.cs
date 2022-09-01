@@ -24,7 +24,7 @@
 
 using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
+
 using Loxodon.Framework.Binding.Contexts;
 using SnkFramework.FluentBinding.Base;
 //using Loxodon.Log;
@@ -36,7 +36,7 @@ namespace Loxodon.Framework.Binding.Builder
     public abstract class BindingSetBase : IBindingBuilder
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(BindingSetBase));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
 
         protected IBindingContext context;
         protected readonly List<IBindingBuilder> builders = new List<IBindingBuilder>();

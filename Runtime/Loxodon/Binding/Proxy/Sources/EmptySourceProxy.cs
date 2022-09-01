@@ -24,7 +24,7 @@
 
 using System;
 using System.Diagnostics;
-using JetBrains.Annotations;
+
 //using Loxodon.Log;
 using SnkFramework.FluentBinding.Base;
 
@@ -33,7 +33,7 @@ namespace Loxodon.Framework.Binding.Proxy.Sources
     public class EmptSourceProxy : SourceProxyBase, IObtainable, IModifiable
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(EmptSourceProxy));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         private SourceDescription description;
 
         public EmptSourceProxy(SourceDescription description) : base(null)

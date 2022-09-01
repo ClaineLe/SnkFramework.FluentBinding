@@ -26,7 +26,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using JetBrains.Annotations;
+
 using SnkFramework.FluentBinding.Base;
 
 namespace Loxodon.Framework.Binding.Reflection
@@ -34,7 +34,7 @@ namespace Loxodon.Framework.Binding.Reflection
     public class StaticProxyFuncInfo<T, TResult> : ProxyMethodInfo, IStaticProxyFuncInfo<T, TResult>
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(StaticProxyFuncInfo<T, TResult>));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private Func<TResult> function;
 
@@ -104,7 +104,7 @@ namespace Loxodon.Framework.Binding.Reflection
     public class StaticProxyFuncInfo<T, P1, TResult> : ProxyMethodInfo, IStaticProxyFuncInfo<T, P1, TResult>
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(StaticProxyFuncInfo<T, P1, TResult>));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private Func<P1, TResult> function;
         public StaticProxyFuncInfo(string methodName) : this(typeof(T).GetMethod(methodName), null)
@@ -179,7 +179,7 @@ namespace Loxodon.Framework.Binding.Reflection
     public class StaticProxyFuncInfo<T, P1, P2, TResult> : ProxyMethodInfo, IStaticProxyFuncInfo<T, P1, P2, TResult>
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(StaticProxyFuncInfo<T, P1, P2, TResult>));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private Func<P1, P2, TResult> function;
 
@@ -255,7 +255,7 @@ namespace Loxodon.Framework.Binding.Reflection
     public class StaticProxyFuncInfo<T, P1, P2, P3, TResult> : ProxyMethodInfo, IStaticProxyFuncInfo<T, P1, P2, P3, TResult>
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(StaticProxyFuncInfo<T, P1, P2, P3, TResult>));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private Func<P1, P2, P3, TResult> function;
 
@@ -325,7 +325,7 @@ namespace Loxodon.Framework.Binding.Reflection
     public class StaticProxyActionInfo<T> : ProxyMethodInfo, IStaticProxyActionInfo<T>
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(StaticProxyActionInfo<T>));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private Action action;
 
@@ -398,7 +398,7 @@ namespace Loxodon.Framework.Binding.Reflection
     public class StaticProxyActionInfo<T, P1> : ProxyMethodInfo, IStaticProxyActionInfo<T, P1>
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(StaticProxyActionInfo<T, P1>));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private Action<P1> action;
 
@@ -474,7 +474,7 @@ namespace Loxodon.Framework.Binding.Reflection
     public class StaticProxyActionInfo<T, P1, P2> : ProxyMethodInfo, IStaticProxyActionInfo<T, P1, P2>
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(StaticProxyActionInfo<T, P1, P2>));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private Action<P1, P2> action;
         public StaticProxyActionInfo(string methodName) : this(typeof(T).GetMethod(methodName), null)
@@ -548,7 +548,7 @@ namespace Loxodon.Framework.Binding.Reflection
     public class StaticProxyActionInfo<T, P1, P2, P3> : ProxyMethodInfo, IStaticProxyActionInfo<T, P1, P2, P3>
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(StaticProxyActionInfo<T, P1, P2, P3>));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private Action<P1, P2, P3> action;
 

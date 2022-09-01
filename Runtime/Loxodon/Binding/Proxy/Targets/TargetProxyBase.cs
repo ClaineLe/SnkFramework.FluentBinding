@@ -24,7 +24,7 @@
 
 //using Loxodon.Log;
 using System;
-using JetBrains.Annotations;
+
 using SnkFramework.FluentBinding.Base;
 using UnityEngine.EventSystems;
 
@@ -103,7 +103,7 @@ namespace Loxodon.Framework.Binding.Proxy.Targets
     public abstract class ValueTargetProxyBase : TargetProxyBase, IModifiable, IObtainable, INotifiable
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(ValueTargetProxyBase));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         
         private bool disposed = false;
         private bool subscribed = false;

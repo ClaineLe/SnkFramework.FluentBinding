@@ -25,7 +25,7 @@
 using Loxodon.Framework.Binding.Paths;
 //using Loxodon.Log;
 using System;
-using JetBrains.Annotations;
+
 using SnkFramework.FluentBinding.Base;
 
 namespace Loxodon.Framework.Binding.Proxy.Sources.Object
@@ -33,7 +33,7 @@ namespace Loxodon.Framework.Binding.Proxy.Sources.Object
     public class ChainedObjectSourceProxy : NotifiableSourceProxyBase, IObtainable, IModifiable, INotifiable
     {
         //private static readonly ILog log = LogManager.GetLogger(typeof(ChainedObjectSourceProxy));
-        [CanBeNull] private static readonly ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
+        private static readonly ISnkBindingLog? log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         private INodeProxyFactory factory;
         private ProxyEntry[] proxies;
         private int count;
