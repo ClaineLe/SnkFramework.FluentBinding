@@ -16,11 +16,11 @@ namespace SnkFramework.FluentBinding.Base
 
         public void Initialize()
         {
-            InitializePrimary();
-            InitializeSecondary();
+            _initializePrimary();
+            _InitializeSecondary();
         }
 
-        public virtual void InitializePrimary()
+        private void _initializePrimary()
         {
             this._iocProvider = SnkIoCProvider.Instance;
         }
@@ -31,6 +31,7 @@ namespace SnkFramework.FluentBinding.Base
             objectSourceProxyFactory.Register(new UniversalNodeProxyFactory(), 0);
             return objectSourceProxyFactory;
         }
+
         protected virtual TargetProxyFactory CreateTargetProxyFactory()
         {
             TargetProxyFactory targetFactory = new TargetProxyFactory();
@@ -42,14 +43,14 @@ namespace SnkFramework.FluentBinding.Base
             return targetFactory;
         }
 
-        public virtual void InitializeSecondary()
+        private void _InitializeSecondary()
         {
             PathParser pathParser = new PathParser();
             ConverterRegistry converterRegistry = new ConverterRegistry();
 
             SourceProxyFactory sourceFactory = new SourceProxyFactory();
             sourceFactory.Register(new LiteralSourceProxyFactory(), 0);
-            
+
             ExpressionPathFinder expressionPathFinder = new ExpressionPathFinder();
             sourceFactory.Register(new ExpressionSourceProxyFactory(sourceFactory, expressionPathFinder), 1);
 
