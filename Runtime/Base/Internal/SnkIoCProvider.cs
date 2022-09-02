@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SnkFramework.FluentBinding.Base
 {
-    public class SnkIoCProvider : ISnkIoCProvider
+    internal class SnkIoCProvider : ISnkIoCProvider
     {
         static private SnkIoCProvider _instance;
         static public SnkIoCProvider Instance => _instance ??= new SnkIoCProvider();

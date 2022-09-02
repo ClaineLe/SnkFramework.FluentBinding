@@ -5,7 +5,7 @@ using SnkFramework.FluentBinding.Base;
 
 namespace SnkFramework.FluentBinding.Base
 {
-    public class SnkSnkMainThreadAsyncDispatcher : ISnkMainThreadAsyncDispatcher
+    internal class SnkSnkMainThreadAsyncDispatcher : ISnkMainThreadAsyncDispatcher
     {
         private ISnkBindingLog log = SnkIoCProvider.Instance.Resolve<ISnkBindingLog>();
         public bool IsOnMainThread => _synchronizationContext == SynchronizationContext.Current;
