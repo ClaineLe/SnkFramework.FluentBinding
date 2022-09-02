@@ -10,77 +10,96 @@ using Loxodon.Framework.Binding.Proxy.Targets;
 
 namespace SnkFramework.FluentBinding.Base
 {
-    public class SnkBindingSetup
+    public abstract class SnkBindingSetup : ISnkBindingSetup
     {
-        static public void Initialize()
+        private SnkIoCProvider _iocProvider;
+
+        public void Initialize()
         {
-            SnkIoCProvider iocProvider = SnkIoCProvider.Instance;
+            InitializePrimary();
+            InitializeSecondary();
+        }
 
-            PathParser pathParser = new PathParser();
-            ExpressionPathFinder expressionPathFinder = new ExpressionPathFinder();
-            ConverterRegistry converterRegistry = new ConverterRegistry();
+        public virtual void InitializePrimary()
+        {
+            this._iocProvider = SnkIoCProvider.Instance;
+        }
 
+        protected virtual ObjectSourceProxyFactory CreateObjectSourceProxyFactory()
+        {
             ObjectSourceProxyFactory objectSourceProxyFactory = new ObjectSourceProxyFactory();
             objectSourceProxyFactory.Register(new UniversalNodeProxyFactory(), 0);
-
-            SourceProxyFactory sourceFactory = new SourceProxyFactory();
-            sourceFactory.Register(new LiteralSourceProxyFactory(), 0);
-            sourceFactory.Register(new ExpressionSourceProxyFactory(sourceFactory, expressionPathFinder), 1);
-            sourceFactory.Register(objectSourceProxyFactory, 2);
-
+            return objectSourceProxyFactory;
+        }
+        protected virtual TargetProxyFactory CreateTargetProxyFactory()
+        {
             TargetProxyFactory targetFactory = new TargetProxyFactory();
             targetFactory.Register(new UniversalTargetProxyFactory(), 0);
             targetFactory.Register(new UnityTargetProxyFactory(), 10);
 #if UNITY_2019_1_OR_NEWER
             targetFactory.Register(new VisualElementProxyFactory(), 30);
 #endif
+            return targetFactory;
+        }
 
+        public virtual void InitializeSecondary()
+        {
+            PathParser pathParser = new PathParser();
+            ConverterRegistry converterRegistry = new ConverterRegistry();
+
+            SourceProxyFactory sourceFactory = new SourceProxyFactory();
+            sourceFactory.Register(new LiteralSourceProxyFactory(), 0);
+            
+            ExpressionPathFinder expressionPathFinder = new ExpressionPathFinder();
+            sourceFactory.Register(new ExpressionSourceProxyFactory(sourceFactory, expressionPathFinder), 1);
+
+            ObjectSourceProxyFactory objectSourceProxyFactory = CreateObjectSourceProxyFactory();
+            sourceFactory.Register(objectSourceProxyFactory, 2);
+
+            TargetProxyFactory targetFactory = CreateTargetProxyFactory();
             BindingFactory bindingFactory = new BindingFactory(sourceFactory, targetFactory);
             StandardBinder binder = new StandardBinder(bindingFactory);
 
             SnkSnkMainThreadAsyncDispatcher snkSnkMainThreadAsyncDispatcher = new SnkSnkMainThreadAsyncDispatcher();
 
+            _iocProvider.Register<ISnkMainThreadAsyncDispatcher>(snkSnkMainThreadAsyncDispatcher);
 
-            iocProvider.Register<ISnkMainThreadAsyncDispatcher>(snkSnkMainThreadAsyncDispatcher);
+            _iocProvider.Register<IBinder>(binder);
+            _iocProvider.Register<IBindingFactory>(bindingFactory);
+            _iocProvider.Register<IConverterRegistry>(converterRegistry);
 
-            iocProvider.Register<IBinder>(binder);
-            iocProvider.Register<IBindingFactory>(bindingFactory);
-            iocProvider.Register<IConverterRegistry>(converterRegistry);
+            _iocProvider.Register<IExpressionPathFinder>(expressionPathFinder);
+            _iocProvider.Register<IPathParser>(pathParser);
 
-            iocProvider.Register<IExpressionPathFinder>(expressionPathFinder);
-            iocProvider.Register<IPathParser>(pathParser);
+            _iocProvider.Register<INodeProxyFactory>(objectSourceProxyFactory);
+            _iocProvider.Register<INodeProxyFactoryRegister>(objectSourceProxyFactory);
 
-            iocProvider.Register<INodeProxyFactory>(objectSourceProxyFactory);
-            iocProvider.Register<INodeProxyFactoryRegister>(objectSourceProxyFactory);
+            _iocProvider.Register<ISourceProxyFactory>(sourceFactory);
+            _iocProvider.Register<ISourceProxyFactoryRegistry>(sourceFactory);
 
-            iocProvider.Register<ISourceProxyFactory>(sourceFactory);
-            iocProvider.Register<ISourceProxyFactoryRegistry>(sourceFactory);
-
-            iocProvider.Register<ITargetProxyFactory>(targetFactory);
-            iocProvider.Register<ITargetProxyFactoryRegister>(targetFactory);
+            _iocProvider.Register<ITargetProxyFactory>(targetFactory);
+            _iocProvider.Register<ITargetProxyFactoryRegister>(targetFactory);
         }
 
-        static public void Uninitialize()
+        public void Uninitialize()
         {
-            SnkIoCProvider iocProvider = SnkIoCProvider.Instance;
+            _iocProvider.Unregister<ISnkMainThreadAsyncDispatcher>();
 
-            iocProvider.Unregister<ISnkMainThreadAsyncDispatcher>();
+            _iocProvider.Unregister<IBinder>();
+            _iocProvider.Unregister<IBindingFactory>();
+            _iocProvider.Unregister<IConverterRegistry>();
 
-            iocProvider.Unregister<IBinder>();
-            iocProvider.Unregister<IBindingFactory>();
-            iocProvider.Unregister<IConverterRegistry>();
+            _iocProvider.Unregister<IExpressionPathFinder>();
+            _iocProvider.Unregister<IPathParser>();
 
-            iocProvider.Unregister<IExpressionPathFinder>();
-            iocProvider.Unregister<IPathParser>();
+            _iocProvider.Unregister<INodeProxyFactory>();
+            _iocProvider.Unregister<INodeProxyFactoryRegister>();
 
-            iocProvider.Unregister<INodeProxyFactory>();
-            iocProvider.Unregister<INodeProxyFactoryRegister>();
+            _iocProvider.Unregister<ISourceProxyFactory>();
+            _iocProvider.Unregister<ISourceProxyFactoryRegistry>();
 
-            iocProvider.Unregister<ISourceProxyFactory>();
-            iocProvider.Unregister<ISourceProxyFactoryRegistry>();
-
-            iocProvider.Unregister<ITargetProxyFactory>();
-            iocProvider.Unregister<ITargetProxyFactoryRegister>();
+            _iocProvider.Unregister<ITargetProxyFactory>();
+            _iocProvider.Unregister<ITargetProxyFactoryRegister>();
         }
     }
 }
